@@ -1,5 +1,5 @@
 #include "libft.h"
-#include <stdio.h> //УДАЛИТЬ
+//#include <stdio.h> //УДАЛИТЬ
 int		ft_count_space(char *s, char c);
 
 char	**ft_mem_for_str(char *s, char c, char **res);
@@ -85,7 +85,7 @@ char	**ft_mem_for_str(char *s, char c, char **res)
 	res[index + 1] = NULL;
 	return (res);
 }
-int main() //УДАЛИТЬ
+/*int main() //УДАЛИТЬ
 {
 	char *str = "pls    SPLIT    THIS    !    ";
 	char **str_s = ft_split(str, ' ');
@@ -94,4 +94,4 @@ int main() //УДАЛИТЬ
 		printf("%s\n", *str_s);
 		str_s++;
 	}
-}
+} */

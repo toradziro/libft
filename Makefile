@@ -53,6 +53,6 @@ fclean:		clean
 		
 re:		fclean all
 
-so: 
-		$(CC) $(SOFLAGS) $(SRC) libft.h
-		$(CC) -shared -o libft.so $(OBJS)
+#so: 
+#		$(CC) $(SOFLAGS) $(SRC) libft.h
+#		$(CC) -shared -o libft.so $(OBJS)

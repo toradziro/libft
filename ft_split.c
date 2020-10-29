@@ -1,91 +1,72 @@
 #include "libft.h"
-//#include <stdio.h> //УДАЛИТЬ
-int		ft_count_space(char *s, char c);
+#include <stdio.h> //УДАЛИТЬ
+//бежим по строке, пропускаем разделители и считаем количество слов
 
-char	**ft_mem_for_str(char *s, char c, char **res);
+int     ft_word_len(const char *s, char c);
 
-char	**ft_fill(char *s, char c, char **res);
+int     ft_word_count(const char *s, char c);
+
+char    **ft_fill(char **str, char *s, char ch);
 
 char	**ft_split(char *s, char c)
 {
-	char	**res;
-	int		len_1;
+    int     len;
+    char    **res;
 
-	len_1 = ft_count_space(s, c);
-	if (len_1 == 0)
-		return (NULL);
-	res = (char**)malloc(sizeof(char*) * (len_1 + 2));
-	if (!res)
-	    return (NULL);
-	res = ft_mem_for_str(s, c, res);
-	res = ft_fill(s, c, res);
-	return (res);
+    len = ft_word_count(s, c);
+    res = (char**)malloc(sizeof(char**) * len + 1);
+    res = ft_fill(res, s, c);
+    return (res);
 }
 
-char	**ft_fill(char *s, char c, char **res)
+int     ft_word_count(const char *s, char c)
 {
-	int		i;
-	int     g;
+    int     i;
 
-	i = 0;
-	g = 0;
-	while (*s)
-	{
-	    if (s[g] == c)
-		{
-			res[i] = ft_substr(s, 0, g);
-			i++;
-			g = -1;
-			while (*s != c && *s)
-				s++;
-			if (*s)
-				s++;
-		}
-		g++;
-	}
-	return (res);
+    i = 0;
+    while (*s)
+    {
+        while (*s == c)
+            s++;
+        i++;
+        while(*s != c)
+            s++;
+    }
+    return (i);
 }
 
-int		ft_count_space(char *s, char c)
+char    **ft_fill(char **str, char *s, char ch)
 {
-	int		count;
+    int     i;
+    int     g;
 
-	count = 0;
-	while (*s)
-	{
-		if (*s == c)
-			count++;
-		s++;
-	}
-	return (count);
+    i = 0;
+    while (*s)
+    {
+        while (*s == ch)
+            s++;
+        g = ft_word_len(s, ch);
+        str[i] = (char*)malloc(sizeof(char) * g + 1);
+        str[i] = ft_substr(s, 0, g);
+        while (*s != ch)
+            s++;
+        i++;
+    }
+    str[i] = NULL;
+    return (str);
 }
 
-char	**ft_mem_for_str(char *s, char c, char **res)
+int     ft_word_len(const char *s, char c)
 {
-	int		count;
-	int		index;
-	int		i;
+    int     i;
 
-	count = 0;
-	index = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] == c)
-		{
-			res[index] = ft_calloc(count + 1, sizeof(char));
-			index++;
-			count = 0;
-		}
-		else
-	       	count++;
-		i++;
-	}
-	res[index] = ft_calloc(count + 1, sizeof(char));
-	res[index + 1] = NULL;
-	return (res);
+    i = 0;
+    while (s[i] && s[i] != c)
+        i++;
+    return (i);
 }
-/*int main() //УДАЛИТЬ
+
+int main() //УДАЛИТЬ
 {
 	char *str = "pls    SPLIT    THIS    !    ";
 	char **str_s = ft_split(str, ' ');
@@ -94,4 +75,4 @@ char	**ft_mem_for_str(char *s, char c, char **res)
 		printf("%s\n", *str_s);
 		str_s++;
 	}
-} */
+}

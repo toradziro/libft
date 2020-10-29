@@ -22,15 +22,17 @@ char	**ft_split(char *s, char c)
 int     ft_word_count(const char *s, char c)
 {
     int     i;
+    int     j;
 
     i = 0;
-    while (*s)
+    j = 0;
+    while (s[j])
     {
-        while (*s == c)
-            s++;
+        while (*s == c && s[j])
+            j++;
         i++;
-        while(*s != c)
-            s++;
+        while(*s != c && s[j])
+            j++;
     }
     return (i);
 }
@@ -43,12 +45,12 @@ char    **ft_fill(char **str, char *s, char ch)
     i = 0;
     while (*s)
     {
-        while (*s == ch)
+        while (*s == ch && *s)
             s++;
         g = ft_word_len(s, ch);
         str[i] = (char*)malloc(sizeof(char) * g + 1);
         str[i] = ft_substr(s, 0, g);
-        while (*s != ch)
+        while (*s != ch && *s)
             s++;
         i++;
     }

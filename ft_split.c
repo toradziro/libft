@@ -1,12 +1,12 @@
 #include "libft.h"
-#include <stdio.h> //УДАЛИТЬ
+//#include <stdio.h> //УДАЛИТЬ
 //бежим по строке, пропускаем разделители и считаем количество слов
 
 int     ft_word_len(const char *s, char c);
 
 int     ft_word_count(const char *s, char c);
 
-char    **ft_fill(char **str, char *s, char ch);
+char    **ft_fill(char **str, char *s, char ch, int len);
 
 char	**ft_split(char *s, char c)
 {
@@ -15,7 +15,9 @@ char	**ft_split(char *s, char c)
 
     len = ft_word_count(s, c);
     res = (char**)malloc(sizeof(char**) * len + 1);
-    res = ft_fill(res, s, c);
+    if (!res)
+	    return (NULL);
+    res = ft_fill(res, s, c, len);
     return (res);
 }
 
@@ -28,22 +30,24 @@ int     ft_word_count(const char *s, char c)
     j = 0;
     while (s[j])
     {
-        while (*s == c && s[j])
+        while (s[j] == c && s[j])
             j++;
-        i++;
-        while(*s != c && s[j])
+	if (!s[j])
+		break;
+	i++;
+        while(s[j] != c && s[j])
             j++;
     }
     return (i);
 }
 
-char    **ft_fill(char **str, char *s, char ch)
+char    **ft_fill(char **str, char *s, char ch, int len)
 {
     int     i;
     int     g;
 
     i = 0;
-    while (*s)
+    while (i < len)
     {
         while (*s == ch && *s)
             s++;
@@ -68,13 +72,13 @@ int     ft_word_len(const char *s, char c)
     return (i);
 }
 
-int main() //УДАЛИТЬ
+/*int main() //УДАЛИТЬ
 {
-	char *str = "pls    SPLIT    THIS    !    ";
+	char *str = "pls    SPLIT    THIS    !   ";
 	char **str_s = ft_split(str, ' ');
 	while (*str_s)
 	{
 		printf("%s\n", *str_s);
 		str_s++;
 	}
-}
+}*/

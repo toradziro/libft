@@ -9,14 +9,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	j = start;
 	i = 0;
 	substr = (char*)malloc(sizeof(char) * len + 1);
-	if (!substr)
+	if (!substr || !s)
 		return (NULL);
 	if (start >= ft_strlen(s))
-	{
-		substr[i] = '\0';
-		return (substr);
-	}
-	while (len > 0 && s[j] != '\0')
+		return (ft_strdup(""));
+	while (len > 0 && s[j])
 	{
 		substr[i] = s[j];
 		j++;

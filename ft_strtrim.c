@@ -12,14 +12,12 @@ char	*ft_strtrim(const char *s1, const char *set)
 	end = ft_strlen(s1) - 1;
 	if (!s1 || !set)
 		return (NULL);
-	while (s1[start] && ft_findch(s1[start], set))
+	while (start <= end && ft_findch(s1[start], set))
 		start++;
-	while (s1[end] && ft_findch(s1[end], set))
+	while (end >= start && ft_findch(s1[end], set))
 		end--;
 	end++;
 	trim = ft_substr(s1, start, (end - start));
-	if ((size_t)start == ft_strlen(s1))
-		trim = "\0";
 	return (trim);
 }
 

@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ehillman <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/10/31 21:38:52 by ehillman          #+#    #+#              #
+#    Updated: 2020/10/31 22:44:47 by ehillman         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 CC = gcc
 FLAGS = -Wall -Wextra -Werror -c
@@ -38,7 +50,11 @@ SRC =  	ft_isalnum.c\
 		ft_tolower.c\
 		ft_lstnew.c\
 		ft_lstadd_front.c\
-		ft_lstadd_back.c
+		ft_lstadd_back.c\
+		ft_lstsize.c\
+		ft_lstlast.c\
+		ft_lstdelone.c\
+		ft_lstclear.c
 OBJS = $(SRC:.c=.o)
 LIB = ar rc
 
@@ -56,6 +72,6 @@ fclean:		clean
 		
 re:		fclean all
 
-so: 
-		$(CC) $(SOFLAGS) $(SRC) libft.h
-		$(CC) -shared -o libft.so $(OBJS)
+#so: 
+#		$(CC) $(SOFLAGS) $(SRC) libft.h
+#		$(CC) -shared -o libft.so $(OBJS)

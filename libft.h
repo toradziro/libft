@@ -3,6 +3,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+typedef struct   s_list
+{
+    void            *content;
+    struct s_list   *next;
+}               t_list;
 int		ft_atoi(char *str);
 void	ft_bzero(void *str, size_t n);
 void	*ft_calloc(size_t num, size_t size);
@@ -37,4 +42,7 @@ char	*ft_strtrim(const char *s1, const char *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int ch);
 int		ft_toupper(int ch);
+t_list  *ft_lstnew(void *content);
+void    ft_lstadd_front(t_list **lst, t_list *new);
+void    ft_lstadd_back(t_list **lst, t_list *new);
 #endif

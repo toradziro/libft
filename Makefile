@@ -35,7 +35,10 @@ SRC =  	ft_isalnum.c\
 		ft_putnbr_fd.c\
 		ft_strjoin.c\
 		ft_strncmp.c\
-		ft_tolower.c
+		ft_tolower.c\
+		ft_lstnew.c\
+		ft_lstadd_front.c\
+		ft_lstadd_back.c
 OBJS = $(SRC:.c=.o)
 LIB = ar rc
 

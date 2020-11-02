@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehillman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 00:14:11 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/01 00:33:05 by ehillman         ###   ########.fr       */
+/*   Created: 2020/11/01 01:17:25 by ehillman          #+#    #+#             */
+/*   Updated: 2020/11/01 18:33:32 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 int		ft_atoi(char *str)
 {
 	long long int	res;
-	int		sign;
+	int				sign;
 
 	sign = 1;
 	res = 0;
-	while (*str && (*str == ' ' || *str == '\n' || *str == '\t' || *str == '\v' || *str == '\f' || *str == '\r'))
+	while (*str && (*str == ' ' || *str == '\n' || *str == '\t' ||
+				*str == '\v' || *str == '\f' || *str == '\r'))
 		str++;
 	if (*str == '-' || *str == '+')
 	{

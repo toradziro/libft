@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehillman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 00:19:19 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/01 00:19:21 by ehillman         ###   ########.fr       */
+/*   Created: 2020/11/01 01:25:39 by ehillman          #+#    #+#             */
+/*   Updated: 2020/11/01 18:06:01 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	*ft_memmove(void *dest, const void *str, size_t num)
 	if (!str && !dest)
 		return (dest);
 	if (dest > str)
-	    while (num--)
-            *(tmp + num) = *(tmp1 + num);
-    else
-    {
+		while (num--)
+			*(tmp + num) = *(tmp1 + num);
+	else
+	{
 		while (num--)
 			*(tmp++) = *(tmp1++);
 	}

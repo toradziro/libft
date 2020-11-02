@@ -3,17 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ehillman <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/10/31 21:38:52 by ehillman          #+#    #+#              #
-#    Updated: 2020/10/31 22:44:47 by ehillman         ###   ########.fr        #
+#    Created: 2020/11/01 01:35:10 by ehillman          #+#    #+#              #
+#    Updated: 2020/11/02 20:51:03 by ehillman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -c
-SOFLAGS = -Wall -fPIC -c
+CFLAGS = -Wall -Wextra -Werror -c
 SRC =  	ft_isalnum.c\
 		ft_itoa.c\
 		ft_memmove.c\
@@ -47,31 +46,42 @@ SRC =  	ft_isalnum.c\
 		ft_putnbr_fd.c\
 		ft_strjoin.c\
 		ft_strncmp.c\
-		ft_tolower.c\
-		ft_lstnew.c\
+		ft_tolower.c
+
+BONUS = ft_lstnew.c\
 		ft_lstadd_front.c\
 		ft_lstadd_back.c\
 		ft_lstsize.c\
 		ft_lstlast.c\
 		ft_lstdelone.c\
-		ft_lstclear.c
+		ft_lstclear.c\
+		ft_lstiter.c\
+		ft_lstmap.c
+
 OBJS = $(SRC:.c=.o)
+OBJS_BONUS = $(BONUS:.c=.o)
 LIB = ar rc
+RM = rm -f
 
 all:	$(NAME)
 
 $(NAME): $(OBJS)
-		$(CC) $(FLAGS) $(SRC) libft.h
-		$(LIB) $(NAME) $(OBJS)
+		@$(LIB) $(NAME) $(OBJS) $^
+		ranlib $(NAME)
+
+%.o : %.c
+		$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-		rm -f $(OBJS)
+		@$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean:		clean
-		rm -f $(NAME) libft.h.gch
-		
+		@$(RM) $(NAME)
+
 re:		fclean all
 
-#so: 
-#		$(CC) $(SOFLAGS) $(SRC) libft.h
-#		$(CC) -shared -o libft.so $(OBJS)
+bonus:	$(NAME) $(OBJS_BONUS)
+		@$(LIB) $(NAME) $(OBJS) $(OBJS_BONUS) $^
+		ranlib $(NAME)
+
+.PHONY: all clean fclean re

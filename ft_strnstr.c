@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehillman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 00:26:36 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/01 00:26:37 by ehillman         ###   ########.fr       */
+/*   Created: 2020/11/01 01:31:14 by ehillman          #+#    #+#             */
+/*   Updated: 2020/11/01 18:27:09 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(char *s1, char *s2, size_t len)
+char			*ft_strnstr(char *s1, char *s2, size_t len)
 {
 	size_t		i;
 	size_t		j;
 	size_t		g;
-	char		*res;
 
 	if (ft_strlen(s2) == 0 || s1 == s2)
 		return (s1);
@@ -29,12 +28,9 @@ char	*ft_strnstr(char *s1, char *s2, size_t len)
 		while (j <= ft_strlen(s2) && g < len)
 		{
 			if (s2[j] == '\0')
-			{
-				res = s1 + i;
-				return (res);
-			}
+				return (s1 + i);
 			if (s2[j] != s1[g])
-				break;
+				break ;
 			j++;
 			g++;
 		}

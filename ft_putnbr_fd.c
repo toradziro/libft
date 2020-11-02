@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehillman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 00:20:06 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/01 00:20:07 by ehillman         ###   ########.fr       */
+/*   Created: 2020/11/01 01:27:22 by ehillman          #+#    #+#             */
+/*   Updated: 2020/11/02 18:57:30 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,25 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char	*s;
+	char			c;
+	unsigned int	nu;
 
-	s = ft_itoa(n);
-	ft_putstr_fd(s, fd);
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		nu = n * -1;
+	}
+	else
+		nu = n;
+	if ((int)nu > 9)
+	{
+		c = nu % 10 + '0';
+		ft_putnbr_fd((nu / 10), fd);
+		write(fd, &c, 1);
+	}
+	if ((int)nu <= 9 && (int)nu >= 0)
+	{
+		c = nu + '0';
+		write(fd, &c, 1);
+	}
 }

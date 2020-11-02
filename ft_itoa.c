@@ -3,65 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ehillman <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 00:16:51 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/01 00:27:36 by ehillman         ###   ########.fr       */
+/*   Created: 2020/11/01 01:21:22 by ehillman          #+#    #+#             */
+/*   Updated: 2020/11/02 18:37:17 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_init(char *str, long long int n);
-
-int		ft_len(long long int n);
-
-char	*ft_itoa(int num)
+static int			ft_len(long long int n)
 {
-    long long int   n;
-	char            *res;
-
-    n = num;
-    if (n == 0)
-    {
-        res = (char*)malloc(sizeof(char) * 2);
-        res[0] = '0';
-        res[1] = '\0';
-        return (res);
-    }
-	res = (char*)malloc(sizeof(char) * (ft_len(n) + 1));
-    if (!res)
-        return (NULL);
-    ft_memset(res, '\0', ft_len(n) + 1);
-	res = ft_init(res, n);
-	return (res);
-}
-
-int		ft_len(long long int n)
-{
-	int		len;
+	int				len;
 
 	len = 0;
 	if (n < 0)
-	    len++;
+		len++;
 	while (n != 0)
 	{
-	    n /= 10;
-	    len++;
+		n /= 10;
+		len++;
 	}
 	return (len);
 }
 
-char	*ft_init(char *str, long long int n)
+static char			*ft_init(char *str, long long int n)
 {
-	int		init;
+	int				init;
 
 	init = ft_len(n) - 1;
 	if (n < 0)
 	{
-        n *= -1;
-        str[0] = '-';
-    }
+		n *= -1;
+		str[0] = '-';
+	}
 	while (n > 0)
 	{
 		str[init] = (n % 10) + '0';
@@ -69,4 +44,25 @@ char	*ft_init(char *str, long long int n)
 		init--;
 	}
 	return (str);
+}
+
+char				*ft_itoa(int num)
+{
+	long long int	n;
+	char			*res;
+
+	n = num;
+	if (n == 0)
+	{
+		res = (char*)malloc(sizeof(char) * 2);
+		res[0] = '0';
+		res[1] = '\0';
+		return (res);
+	}
+	res = (char*)malloc(sizeof(char) * (ft_len(n) + 1));
+	if (!res)
+		return (NULL);
+	ft_memset(res, '\0', ft_len(n) + 1);
+	res = ft_init(res, n);
+	return (res);
 }

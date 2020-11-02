@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehillman <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/01 00:15:31 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/01 00:15:34 by ehillman         ###   ########.fr       */
+/*   Created: 2020/11/01 01:19:01 by ehillman          #+#    #+#             */
+/*   Updated: 2020/11/01 18:35:08 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int		ft_isalnum(int ch)
 {
-	return (((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z')) || (ch >= '0' && ch <= '9'));
+	return (ft_isalpha(ch) || ft_isdigit(ch));
 }

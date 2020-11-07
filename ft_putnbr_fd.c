@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 01:27:22 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/02 18:57:30 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/04 19:48:40 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	else
 		nu = n;
-	if ((int)nu > 9)
+	if (nu > 9)
 	{
 		c = nu % 10 + '0';
 		ft_putnbr_fd((nu / 10), fd);
 		write(fd, &c, 1);
 	}
-	if ((int)nu <= 9 && (int)nu >= 0)
+	if (nu <= 9 && nu >= 0)
 	{
 		c = nu + '0';
 		write(fd, &c, 1);

@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 18:26:15 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/02 18:01:02 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/07 15:23:16 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void		ft_clearsplit(char **str)
 		free(str[i]);
 		i++;
 	}
-	i = 0;
 	free(str);
 }
 
@@ -89,8 +88,7 @@ char			**ft_split(char *s, char c)
 	if (!s)
 		return (NULL);
 	len = ft_word_count(s, c);
-	res = (char**)malloc(sizeof(char*) * len + 1);
-	if (!res)
+	if (!(res = (char**)malloc(sizeof(char*) * (len + 1))))
 		return (NULL);
 	res = ft_fill(res, s, c, len);
 	return (res);

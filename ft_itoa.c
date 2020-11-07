@@ -6,7 +6,7 @@
 /*   By: ehillman <ehillman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 01:21:22 by ehillman          #+#    #+#             */
-/*   Updated: 2020/11/02 18:37:17 by ehillman         ###   ########.fr       */
+/*   Updated: 2020/11/06 23:16:31 by ehillman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ char				*ft_itoa(int num)
 	n = num;
 	if (n == 0)
 	{
-		res = (char*)malloc(sizeof(char) * 2);
+		if (!(res = (char*)malloc(sizeof(char) * 2)))
+			return (NULL);
 		res[0] = '0';
 		res[1] = '\0';
 		return (res);
